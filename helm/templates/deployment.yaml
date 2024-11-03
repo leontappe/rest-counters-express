@@ -68,7 +68,7 @@ spec:
       volumes:
         - name: config
           configMap:
-            name: {{ .Release.Name }}-config-{{ .Values.restCounters.config | sha256sum | trunc 8 }}
+            name: {{ .Release.Name }}-config-{{- toYaml .Values.restCounters.config | sha256sum | trunc 8 }}
         {{- with .Values.volumes }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
