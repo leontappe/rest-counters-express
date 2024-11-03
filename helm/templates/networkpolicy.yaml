@@ -11,7 +11,9 @@ spec:
     - Ingress
   ingress:
     - from:
-      {{- range .Values.restCounters.metrics.networkPolicyFrom }}
+      {{- with .Values.restCounters.metrics.networkPolicyFrom }}
+      {{- toYaml . | nindent 6 }}
+      {{- end }}
       ports:
         - protocol: TCP
           port: {{ .Values.service.port }}
