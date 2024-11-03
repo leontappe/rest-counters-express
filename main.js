@@ -102,6 +102,10 @@ app.get('/metrics', async (req, res) => {
   res.end(await client.register.metrics());
 });
 
+app.get('/health', (req, res) => {
+  res.status(200).send('OK');
+});
+
 app.listen(port, () => {
   console.log(`Metrics server running at http://${host}:${port}/`);
 });
