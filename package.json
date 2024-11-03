@@ -1,0 +1,18 @@
+{
+  "name": "rest-counters",
+  "version": "1.0.0",
+  "description": "A simple express HTTP server that increments Prometheus counters when POST'ed",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js"
+  },
+  "keywords": [],
+  "author": "Leon Tappe <leon@tappe-it.de>",
+  "license": "BSD-3-Clause",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "prom-client": "^15.1.3",
+    "yamljs": "^0.3.0"
+  }
+}
