@@ -5,4 +5,6 @@ metadata:
   name: {{ .Release.Name }}-config-{{ .Values.restCounters.config | sha256sum | trunc 8 }}
 data:
   config.yaml: |
-    {{ .Values.restCounters.config | indent 4 }}
+    {{- with .Values.restCounters.config }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}

@@ -25,13 +25,12 @@ restCounters:
               app: prometheus
 
   # config defining the counters
-  config: |
+  config:
     counters:
       - name: feature_usage_count
         help: "Total number of times a specific feature is used"
         labels: ["feature"]
         rate_limit: 0 # 10 minutes in milliseconds
-
       - name: button_click_count
         help: "Count of button clicks in the app"
         labels: ["button_name"]
