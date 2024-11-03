@@ -5,8 +5,8 @@
 # custom values for rest-counters-express
 restCounters:
   # This is the port the server will listen on.
-  port: 3000
-  host: 0.0.0.0
+  port: "3000"
+  host: "0.0.0.0"
 
   configPath: "config.yaml"
 
