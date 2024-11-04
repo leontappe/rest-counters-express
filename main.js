@@ -14,7 +14,7 @@ require('dotenv').config({ path: envFilePath });
 // Load from environment variables
 const port = process.env.REST_COUNTERS_PORT || 3000;
 const host = process.env.REST_COUNTERS_HOST || 'localhost';
-const apiToken = process.env.REST_COUNTERS_API_TOKEN;
+const apiToken = process.env.REST_COUNTERS_TOKEN;
 const configPath = process.env.REST_COUNTERS_CONFIG || 'config.yaml'; // Default to 'config.yaml' if not set
 
 // Load the YAML configuration
@@ -94,6 +94,8 @@ app.post('/track/:counterName', authorizeAndRateLimit, (req, res) => {
   } else {
     res.status(404).send('Counter not found.');
   }
+
+  console.log(`Counter ${counterName} with labels ${JSON.stringify(labels)} incremented.`);
 });
 
 // Expose metrics endpoint for Prometheus
