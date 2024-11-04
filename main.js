@@ -66,7 +66,6 @@ const authorizeAndRateLimit = (req, res, next) => {
 
   if (!rateLimits[counterName]) {
     next();
-    return;
   }
 
   const currentTime = Date.now();
@@ -93,10 +92,9 @@ app.post('/track/:counterName', authorizeAndRateLimit, (req, res) => {
     console.log(`Counter ${counterName} with labels ${JSON.stringify(labels)} incremented.`);
     res.status(200).send(`Counter ${counterName} incremented.`);
   } else {
+    console.log(`Counter ${counterName} not found.`);
     res.status(404).send('Counter not found.');
   }
-
-  console.log(`Counter ${counterName} with labels ${JSON.stringify(labels)} incremented.`);
 });
 
 // Expose metrics endpoint for Prometheus
