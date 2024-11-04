@@ -88,9 +88,9 @@ app.post('/track/:counterName', authorizeAndRateLimit, (req, res) => {
   const counter = counters[counterName];
 
   if (counter) {
-    console.log(`Counter ${counterName} with labels ${JSON.stringify(req.query)} incremented.`);
     const labels = req.query || {};
     counter.inc(labels, 1);
+    console.log(`Counter ${counterName} with labels ${JSON.stringify(labels)} incremented.`);
     res.status(200).send(`Counter ${counterName} incremented.`);
   } else {
     res.status(404).send('Counter not found.');
