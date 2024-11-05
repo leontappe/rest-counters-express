@@ -22,11 +22,11 @@ metadata:
   labels:
     {{- include "rest-counters-express.labels" . | nindent 4 }}
 spec:
-  type: {{ .Values.restCounters.metrics.serviceType }}
+  type: {{ .Values.restCounters.metrics.service.type }}
   selector:
     {{- include "rest-counters-express.selectorLabels" . | nindent 4 }}
   ports:
     - protocol: TCP
-      port: {{ .Values.restCounters.metrics.port }}
-      targetPort: {{ .Values.restCounters.metrics.port }}
+      port: {{ .Values.restCounters.metrics.service.port }}
+      targetPort: {{ .Values.restCounters.metrics.service.port }}
       name: http
