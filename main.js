@@ -1,7 +1,6 @@
 const express = require('express');
 const client = require('prom-client');
 const YAML = require('yamljs');
-const fs = require('fs');
 const path = require('path');
 
 const app = express();
@@ -97,12 +96,6 @@ app.post('/track/:counterName', authorizeAndRateLimit, (req, res) => {
   }
 });
 
-// Expose metrics endpoint for Prometheus
-app.get('/metrics', async (req, res) => {
-  res.set('Content-Type', client.register.contentType);
-  res.end(await client.register.metrics());
-});
-
 app.get('/health', (req, res) => {
   res.status(200).send('OK');
 });
@@ -110,3 +103,18 @@ app.get('/health', (req, res) => {
 app.listen(port, () => {
   console.log(`Metrics server running at http://${host}:${port}/`);
 });
+
+
+const metricsApp = express();
+
+const metricsPort = process.env.REST_COUNTERS_METRICS_PORT || 3001;
+
+// Expose metrics endpoint for Prometheus
+metricsApp.get('/metrics', async (req, res) => {
+  res.set('Content-Type', client.register.contentType);
+  res.end(await client.register.metrics());
+});
+
+metricsApp.listen(metricsPort, () => {
+  console.log('Metrics server running at http://${host}:/${metricsPort}');
+})

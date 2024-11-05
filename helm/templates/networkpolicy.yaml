@@ -16,6 +16,5 @@ spec:
       {{- end }}
       ports:
         - protocol: TCP
-          port: {{ .Values.service.port }}
-          path: /metrics
+          port: {{ .Values.restCounters.metrics.service.port }}
 {{- end }}

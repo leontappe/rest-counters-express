@@ -62,7 +62,9 @@ spec:
             - name: REST_COUNTERS_CONFIG
               value: {{ .Values.restCounters.configPath | quote }}
             - name: REST_COUNTERS_PORT
-              value: "{{ .Values.restCounters.port }}"
+              value: "{{ .Values.service.port }}"
+            - name: REST_COUNTERS_METRICS_PORT
+              value: "{{ .Values.restCounters.metrics.service.port }}"
             - name: REST_COUNTERS_HOST
               value: "{{ .Values.restCounters.host }}"
       volumes:
