@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Release.Name }}-api
+  name: {{ include "rest-counters-express.fullname" $ }}-api
   labels:
     {{- include "rest-counters-express.labels" . | nindent 4 }}
 spec:
@@ -18,7 +18,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Release.Name }}-metrics
+  name: {{ include "rest-counters-express.fullname" $ }}-metrics
   labels:
     {{- include "rest-counters-express.labels" . | nindent 4 }}
 spec:
